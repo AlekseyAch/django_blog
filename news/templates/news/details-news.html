@@ -1,0 +1,257 @@
+{% include "main/header.html" %}
+
+
+<!-- Page heading start -->
+    <div
+      class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl xl mx-auto px-3 pt_120 pb_120"
+    >
+      <div class="flex justify-center">
+        <div>
+          <div class="text-center">
+            <h1
+              class="lg:text-6xl sm:text-4xl text-3xl text-white lg:mb-10 sm:mb-9 mb-6 font-bold"
+            >
+                {{ news_post.title }}
+            </h1>
+            <ul
+              class="flex items-center justify-center sm:flex-nowrap flex-wrap gap-3"
+            >
+              <li class="text-2xl font-caveat">
+                <a href="/" class="text-white">Главная</a>
+              </li>
+              <li class="text-white text-2xl">/</li>
+              <li class="text-clr_base font-caveat text-2xl">
+                {{ news_post.title }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page heading end -->
+
+    <section class="pb_120">
+      <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl xl mx-auto px-3">
+        <div class="grid lg:grid-cols-[66.66%_auto] gap-6">
+          <div>
+            <div class="" data-aos="fade-up" data-aos-duration="1000">
+              <a class="overflow-hidden block w-full">
+                <img src="{{ news_post.text_img.url }}" alt="Главное изображение записи" alt="img" class="w-full overflow-hidden duration-500"/>
+              </a>
+              <div class=" py-[30px]">
+                <div class="lg:mb-[30px] mb-5" data-aos="fade-up" data-aos-duration="1400">
+                  <span class=" text-lg font-medium text-white border-b border-b-clr_cusborder xl:pb-[30px] pb-5 xl:mb-7 mb-[19px] block">
+                    <a href=""> {{ news_post.category.category }} </a> Автор: {{ news_post.author }} / Опубликовано в {{ news_post.date }} / Коментарии: {% with num_reviews=news_post.reviews_set.count %}{{ num_reviews }}{% endwith %} </span>
+                  <div class="text-clr_pra text-base">{{ news_post.text_blocks|safe }}</div>
+                </div>
+              </div>
+              <div class=" bg-common_bg xl:mb-[60px] mb-10 rounded-lg xl:p-[30px] sm:p-5 py-5 px-[14px] flex items-center xl:justify-between justify-center xl:flex-nowrap flex-wrap gap-5">
+                <div class=" flex items-center sm:gap-5 gap-[10px]">
+                  <span class=" white text-xl font-medium text-white">Теги записи :</span>
+                  {% for tag in news_post.tags.all %}
+                      {% if forloop.counter <= 2 %}
+                          <a href="{% url 'tag_detail' tag.pk %}" class="rounded-[10px] bg-[rgb(29_29_29_)] sm:py-[12px] py-2 sm:px-5 px-[10px] sm:text-base text-[12px] uppercase text-clr_pra">{{ tag.title }}</a>
+                      {% endif %}
+                  {% endfor %}
+                </div>
+                <div class=" flex items-center gap-5">
+                  <span class=" white text-xl font-medium text-white">
+                    Поделиться :
+                  </span>
+                  <ul class=" flex items-center rounded-[10px] bg-[rgb(29_29_29_)] py-[10px] px-5 gap-5">
+                    <li>
+                      <a>
+                        <i class="bi-facebook text-white duration-500 hover:text-clr_base">
+                        </i>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <i class="bi-twitter text-white duration-500 hover:text-clr_base">
+                        </i>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <i class="bi-linkedin text-white duration-500 hover:text-clr_base">
+                        </i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div >
+                <div class=" bg-common_bg p-[30px] rounded-lg">
+                  <h3 class="mb-5 text-white sm:text-[32px] text-[26px] font-semibold">Оставить отзыв</h3>
+                  <form action="{% url 'add_reviews' news_post.id %}" method="post" class="flex flex-col gap-6 lg:mb-10 mb-8">
+                    {% csrf_token %}
+                    <div class="w-full">
+                      <input type="text" placeholder="Имя" name="name" class="w-full py-[18px] px-5 rounded-[10px] bg-[rgb(29_29_29)] border border-clr_cusborder text-white outline-none"/>
+                    </div>
+                    <div class="w-full">
+                      <input type="email" placeholder="Email" name="email" class="w-full py-[18px] px-5 rounded-[10px] bg-[rgb(29_29_29)] border border-clr_cusborder text-white outline-none"/>
+                    </div>
+                    <div class="w-full">
+                      <input type="text" placeholder="Должность" name="vork_user" class="w-full py-[18px] px-5 rounded-[10px] bg-[rgb(29_29_29)] border border-clr_cusborder text-white outline-none"/>
+                    </div>
+
+                    <div>
+                      <textarea name="text_rev" rows="5" placeholder="Ваш отзыв" class="w-full py-[18px] px-5 rounded-[10px] bg-[rgb(29_29_29)] border border-clr_cusborder text-white outline-none"></textarea>
+                    </div>
+                    <button href="" type="submit" class="w-[250px] flex justify-center items-center gap-2 font-medium px-[30px] pt-5 pb-[21px] text-lg leading-[120%] capitalize relative bg-clr_base overflow-hidden rounded-[5px] duration-500 text-clr_subtitle before:absolute before:content-[''] before:bottom-full before:bg-[#aad302] before:left-0 before:w-full before:h-full before:duration-500 before:bg-opacity-80 hover:before:bottom-0">
+                      <span class="z-10 relative duration-500">Оставить отзыв</span><i class="bi-arrow-right z-10 relative duration-500 text-xl"></i>
+                    </button>
+                  </form>
+                  <h3 class="mb-5 text-white sm:text-[26px] text-[18px] font-semibold">Отзывы о статье: {{ news_post.title }}</h3>
+                  <p class="text-clr_pra mb-[30px]">Вы можете ознакомиться с отзывами ниже и так же ответить на вопросы</p>
+                  {% if news_post.reviews_set.all %}
+                    {% for revs in news_post.reviews_set.all %}
+                        <div class="swiper-slide relative">
+                            <div class="review-content">
+                                <i class="sm:text-xl text-base text-clr_white sm:mb-10 mb-5 block">
+                                    {{ revs.text_rev|safe }}
+                                </i>
+                                <h4 class="text-clr_base mb-2 font-semibold text-2xl leading-[130%]">
+                                    {{ revs.name }}
+                                </h4>
+                                <span class="text-lg text-clr_pra">{{ revs.vork_user }}</span>
+                            </div>
+                            <div class="flex justify-between items-center mt-2">
+                                <button class="reply-btn rounded-[10px] bg-[rgb(29_29_29_)] sm:py-[12px] py-2 sm:px-5 px-[10px] sm:text-base text-[12px] uppercase text-clr_pra" onclick="toggleButton(this, '{{ revs.name }}', '{{ revs.id }}', 'addReview_{{ revs.id }}')">Ответить</button>
+                                <div class="flex gap-4">
+                                    <button class="like-btn rounded-[10px] bg-[rgb(29_29_29_)] sm:py-[12px] py-2 sm:px-5 px-[10px] sm:text-base text-[12px] uppercase text-clr_pra">👍</button>
+                                    <button class="dislike-btn rounded-[10px] bg-[rgb(29_29_29_)] sm:py-[12px] py-2 sm:px-5 px-[10px] sm:text-base text-[12px] uppercase text-clr_pra">👎</button>
+                                    <button class="share-btn rounded-[10px] bg-[rgb(29_29_29_)] sm:py-[12px] py-2 sm:px-5 px-[10px] sm:text-base text-[12px] uppercase text-clr_pra">💫</button>
+                                </div>
+                            </div>
+
+                            <!-- Форма для ответа на отзыв -->
+                            <form action="{% url 'add_response' news_post.id %}" method="post" class="reply-form hidden mt-4">
+                                {% csrf_token %}
+                                <div class="flex gap-4 mb-2">
+                                    <input type="text" placeholder="Имя" name="name_res" class="flex-1 py-[18px] px-5 rounded-[10px] bg-[rgb(29_29_29)] border border-clr_cusborder text-white outline-none"/>
+                                    <input type="text" placeholder="Должность" name="vork_user_res" class="w-full py-[18px] px-5 rounded-[10px] bg-[rgb(29_29_29)] border border-clr_cusborder text-white outline-none"/>
+                                    <input type="email" placeholder="Email" name="email_res" class="flex-1 py-[18px] px-5 rounded-[10px] bg-[rgb(29_29_29)] border border-clr_cusborder text-white outline-none" placeholder="Введите ваш email"/>
+                                </div>
+                                <textarea name="text_rev_res" rows="5" id="textRevsName_{{ revs.id }}" placeholder="Ваш ответ" class="w-full py-[18px] px-5 rounded-[10px] bg-[rgb(29_29_29)] border border-clr_cusborder text-white outline-none mb-2"></textarea>
+                                <input type="hidden" name="news_perent_res" value="{{ news_post.id }}">
+                                <input type="hidden" name="parent_review_id" value="{{ revs.id }}">
+                                <button type="submit" class="w-[150px] bg-clr_base py-3 rounded-[10px] transition duration-300 hover:bg-[#aad302] mt-2">Ответить</button>
+                            </form>
+
+                            <!-- Проверяем наличие ответов на этот отзыв -->
+                            {% if revs.response_set.all %}
+                                {% for revs_resp in revs.response_set.all %}
+                                    <div class="swiper-slide relative mt-12">
+                                        <div class="review-content">
+                                            <i class="sm:text-xl text-base text-clr_white sm:mb-10 mb-5 block">
+                                                {{ revs_resp.text_rev_res|safe }}
+                                            </i>
+                                            <h4 class="text-clr_base mb-2 font-semibold text-2xl leading-[130%]">
+                                                {{ revs_resp.name_res }}
+                                            </h4>
+                                            <span class="text-lg text-clr_pra">{{ revs_resp.vork_user_res }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center mt-2">
+                                        <button class="reply-btn rounded-[10px] bg-[rgb(29_29_29_)] sm:py-[12px] py-2 sm:px-5 px-[10px] sm:text-base text-[12px] uppercase text-clr_pra" onclick="toggleButton(this, '{{ revs.name }}', '{{ revs.id }}', 'addReview_{{ revs.id }}')">Ответить</button>
+                                        <div class="flex gap-4">
+                                            <button class="like-btn rounded-[10px] bg-[rgb(29_29_29_)] sm:py-[12px] py-2 sm:px-5 px-[10px] sm:text-base text-[12px] uppercase text-clr_pra">👍</button>
+                                            <button class="dislike-btn rounded-[10px] bg-[rgb(29_29_29_)] sm:py-[12px] py-2 sm:px-5 px-[10px] sm:text-base text-[12px] uppercase text-clr_pra">👎</button>
+                                            <button class="share-btn rounded-[10px] bg-[rgb(29_29_29_)] sm:py-[12px] py-2 sm:px-5 px-[10px] sm:text-base text-[12px] uppercase text-clr_pra">💫</button>
+                                        </div>
+                                    </div>
+                                    <form action="{% url 'add_response' news_post.id %}" method="post" class="reply-form hidden mt-4">
+                                        {% csrf_token %}
+                                        <div class="flex gap-4 mb-2">
+                                            <input type="text" placeholder="Имя" name="name_res" class="flex-1 py-[18px] px-5 rounded-[10px] bg-[rgb(29_29_29)] border border-clr_cusborder text-white outline-none"/>
+                                            <input type="text" placeholder="Должность" name="vork_user_res" class="w-full py-[18px] px-5 rounded-[10px] bg-[rgb(29_29_29)] border border-clr_cusborder text-white outline-none"/>
+                                            <input type="email" placeholder="Email" name="email_res" class="flex-1 py-[18px] px-5 rounded-[10px] bg-[rgb(29_29_29)] border border-clr_cusborder text-white outline-none" placeholder="Введите ваш email"/>
+                                        </div>
+                                        <textarea name="text_rev_res" rows="5" id="textRevsName_{{ revs.id }}" placeholder="Ваш ответ" class="w-full py-[18px] px-5 rounded-[10px] bg-[rgb(29_29_29)] border border-clr_cusborder text-white outline-none mb-2"></textarea>
+                                        <input type="hidden" name="news_perent_res" value="{{ news_post.id }}">
+                                        <input type="hidden" name="parent_review_id" value="{{ revs.id }}">
+                                        <button type="submit" class="w-[150px] bg-clr_base py-3 rounded-[10px] transition duration-300 hover:bg-[#aad302] mt-2">Ответить</button>
+                                    </form>
+                                {% endfor %}
+                            {% else %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <!-- Если нет отзывов для этой новости -->
+                    <p>Отзывов у этой статьи пока нет. Хотите оставить первыми?</p>
+                {% endif %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ---------- Right side / sidebar -->
+          <div>
+            <div class=" border border-clr_cusborder xl:p-[30px] py-5 px-[18px] rounded-lg sticky top-[120px]">
+              <div class=" xl:mb-[60px] mb-10">
+                <h4 class="text-white border-b border-b-clr_cusborder pb-[14px] mb-[30px] text-2xl font-semibold">
+                    Поиск
+                </h4>
+                <form action="{% url 'search' %}" method="GET" class="flex content-center justify-between">
+                    <input type="text" name="q" placeholder="Поиск" class="w-full bg-transparent py-[10px] pr-[10px] pl-5 h-[60px] border border-clr_cusborder rounded-lg outline-none"/>
+                    <button type="submit" class="min-w-[60px] h-[60px] flex items-center justify-center bg-clr_base rounded-tr-lg rounded-br-lg">
+                        <i class="text-clr_title text-lg"><Search /></i>
+                    </button>
+                </form>
+              </div>
+             <!-- categories -->
+                  {% include "main/include/categories-views.html" %}
+                <!-- categories -->
+
+
+              <!-- recent post -->
+
+                  {% include "main/include/recent-post.html" %}
+
+              <!-- recent post -->
+
+              <!-- Tags -->
+                  {% include "main/include/tags-views.html" %}
+              <!-- Tags -->
+            </div>
+          </div>
+          <!-- ---------- Right side / sidebar -->
+        </div>
+      </div>
+    </section>
+<script>
+    function toggleButton(button, name, id) {
+        if (button.innerHTML === 'Ответить') {
+            button.innerHTML = 'Закрыть';
+            addReview(name, id, 'addReview_' + id);
+        } else {
+            button.innerHTML = 'Ответить';
+            // Дополнительные действия, если необходимо
+        }
+    }
+    function toggleReplyForm(btn) {
+        // Находим ближайшую форму ответа отзыва
+        const replyForm = btn.closest('.swiper-slide').querySelector('.reply-form');
+        if (!replyForm) return; // Проверяем, найдена ли форма
+
+        // Переключаем видимость формы ответа
+        replyForm.classList.toggle('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const replyBtns = document.querySelectorAll('.reply-btn');
+
+        replyBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                // Переключаем видимость формы ответа
+                toggleReplyForm(btn);
+            });
+        });
+    });
+</script>
+
+
+{% include "main/footer.html" %}

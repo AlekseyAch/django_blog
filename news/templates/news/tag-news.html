@@ -1,0 +1,164 @@
+{% include "main/header.html" %}
+
+    <!-- Page heading start -->
+    <div
+      class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl xl mx-auto px-3 pt_120 pb_120"
+    >
+      <div class="flex justify-center">
+        <div>
+          <div class="text-center">
+            <h1
+              class="lg:text-6xl sm:text-4xl text-3xl text-white lg:mb-10 sm:mb-9 mb-6 font-bold"
+            >
+              {{ tag.title }}
+            </h1>
+            <ul
+              class="flex items-center justify-center sm:flex-nowrap flex-wrap gap-3"
+            >
+              <li class="text-2xl font-caveat">
+                <a href="/" class="text-white">Главная</a>
+              </li>
+              <li class="text-white text-2xl">/</li>
+              <li class="text-clr_base font-caveat text-2xl">Все новости и статьи</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page heading end -->
+
+    <section class=" pb_120">
+      <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl xl mx-auto px-3">
+        <div class="grid lg:grid-cols-[66.66%_auto] gap-6">
+          <!-- left side -->
+          <div>
+              {% if news_in_tag %}
+                  {% for el in news_in_tag %}
+
+                <div
+                class="  xl:mb-[50px] mb-[30px] group"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+              >
+                <a href="" class="overflow-hidden block">
+                  <img
+                    src="{{ el.text_img.url }}"
+                    alt="img"
+                    class="w-full overflow-hidden duration-500 group-hover:scale-105"
+                  />
+                </a>
+                <div
+                  class="content w-[90%] bg-clr_body rounded-tr-lg py-[30px] pr-[14px] pl-5 -translate-y-[70px] -mb-[70px]"
+                >
+                  <span
+                    class="bdate flex items-center gap-1 text-clr_pra text-base mb-[30px]"
+                  >
+                    <span class="uppercase text-white">{{ el.date}}</span>
+                  </span>
+                  <h3
+                    class="border-b border-b-clr_cusborder pb-[30px] mb-[30px] text-4xl font-semibold capitalize"
+                  >
+                    <a
+                      href=""
+                      class="text-white duration-500 group-hover:text-clr_base"
+                      >{{ el.title}}</a
+                    >
+                  </h3>
+                  <p class="text-clr_pra text-base mb-[30px]">
+                    {{ el.excerpt}}...
+                  </p>
+                  <a
+                    href="{% url 'news-details' el.id %}"
+                    class="max-w-[200px] flex justify-center items-center gap-2 font-medium px-[30px] pt-5 pb-[21px] text-lg leading-[120%] capitalize relative bg-clr_base overflow-hidden rounded-[5px] duration-500 text-clr_subtitle before:absolute before:content-[''] before:bottom-full before:bg-[#aad302] before:left-0 before:w-full before:h-full before:duration-500 before:bg-opacity-80 hover:before:bottom-0"
+                  >
+                    <span class="z-10 relative duration-500">Подробнее</span>
+                    <span>
+                      <i class="bi-arrow-right z-10 relative duration-500"> </i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+              {% endfor %}
+              {% else %}
+                  <p>Записей в этой категории не найдено</p>
+              {% endif %}
+            {# Дальше идет пагинация #}
+            <div
+              class="  bg-common_bg rounded-lg xl:p-[30px] py-5 px-4"
+            >
+              <ul class=" flex gap-[14px] items-center">
+                <li>
+                  <a
+                    href=""
+                    class="w-[60px] h-[60px] flex items-center justify-center rounded-lg bg-clr_base text-clr_title duration-500 text-lg hover:bg-white hover:text-clr_title"
+                    >1</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href=""
+                    class="w-[60px] h-[60px] flex items-center justify-center rounded-lg bg-clr_base text-clr_title duration-500 text-lg hover:bg-white hover:text-clr_title"
+                    >2</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href=""
+                    class="w-[60px] h-[60px] flex items-center justify-center rounded-lg bg-clr_base text-clr_title duration-500 text-lg hover:bg-white hover:text-clr_title"
+                    >3</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href=""
+                    class="w-[60px] h-[60px] flex items-center justify-center rounded-lg bg-clr_base text-clr_title duration-500 text-lg hover:bg-white hover:text-clr_title"
+                  >
+                    <i class="bi-chevron-right"> </i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- left side -->
+          <!-- --------- Right side / sidebar -->
+          <div>
+            <div class=" border border-clr_cusborder xl:p-[30px] py-5 px-[18px] rounded-lg sticky top-[120px]">
+              <div class=" xl:mb-[60px] mb-10">
+                <h4 class="text-white border-b border-b-clr_cusborder pb-[14px] mb-[30px] text-2xl font-semibold">
+                    Поиск
+                </h4>
+                <form action="{% url 'search' %}" method="GET" class="flex content-center justify-between">
+                    <input type="text" name="q" placeholder="Поиск" class="w-full bg-transparent py-[10px] pr-[10px] pl-5 h-[60px] border border-clr_cusborder rounded-lg outline-none"/>
+                    <button type="submit" class="min-w-[60px] h-[60px] flex items-center justify-center bg-clr_base rounded-tr-lg rounded-br-lg">
+                        <i class="text-clr_title text-lg"><Search /></i>
+                    </button>
+                </form>
+              </div>
+              <!-- categories -->
+                  {% include "main/include/categories-views.html" %}
+                <!-- categories -->
+
+
+              <!-- recent post -->
+
+                  {% include "main/include/recent-post.html" %}
+
+              <!-- recent post -->
+
+              <!-- Tags -->
+                  {% include "main/include/tags-views.html" %}
+              <!-- Tags -->
+
+            </div>
+          </div>
+          <!-- --------- Right side / sidebar -->
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+{% include "main/footer.html" %}

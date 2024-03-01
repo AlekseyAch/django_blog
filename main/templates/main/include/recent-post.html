@@ -1,0 +1,16 @@
+<div class="xl:mb-[60px] mb-10">
+    <h4 class="text-white border-b border-b-clr_cusborder pb-[14px] mb-[30px] text-2xl font-semibold">Последние записи</h4>
+    <ul>
+        {% for element in latest_news %}
+            <li class="mb-[30px] last:mb-0">
+                <a href="{% url 'news-details' element.pk %}" class="flex items-center flex-wrap xl:flex-nowrap xl:gap-5 gap-[10px]">
+                    <img src="{{ element.text_img.url }}" alt="img" width="120" />
+                    <div>
+                        <span class="retitle text-white text-xl font-medium mb-[14px] block capitalize">{{ element.title }}</span>
+                        <span class="text-clr_base text-base flex items-center gap-2"><i><Clock /></i>{{ element.date }}</span>
+                    </div>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

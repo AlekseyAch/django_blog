@@ -1,0 +1,17 @@
+<div class="xl:mb-[60px] mb-10 position-relative">
+    {% if categories %}
+    <h4 class="text-white border-b border-b-clr_cusborder pb-[14px] mb-[30px] text-2xl font-semibold">Категории</h4>
+    <ul>
+        {% for category in categories %}
+        <li class="duration-500 group mb-6 last:mb-0">
+            <a href="{% url 'category_detail' category.id %}" class="flex items-center justify-between duration-500">
+                <span class="text-clr_pra text-lg">{{ category.title }}</span>
+                <span class="arrow duration-500 w-6 h-6 bg-clr_base group-hover:bg-white flex justify-center items-center rounded-[5px]">
+                    <i class="bi-chevron-right text-[11px] group-hover:text-clr_title"></i>
+                </span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
