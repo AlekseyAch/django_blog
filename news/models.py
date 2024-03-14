@@ -12,6 +12,7 @@ class News(models.Model):
     title = models.CharField('Название', max_length=100)
     slug = models.SlugField('Ссылка', max_length=250, blank=True)
     excerpt = models.CharField('Анонс', max_length=255, blank=True, null=True)
+    ip = models.GenericIPAddressField('IP адрес публикации', default='192.168.133.203')
 
     author = models.ForeignKey(
         User,

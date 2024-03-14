@@ -43,7 +43,7 @@
                   <span class="bdate flex items-center gap-1 text-clr_pra text-base mb-[30px]">
                     <span class="uppercase text-white">{{ el.date}}</span>
                   </span>
-                  <h3 class="border-b border-b-clr_cusborder pb-[30px] mb-[30px] text-4xl font-semibold capitalize">
+                  <h3 class="border-b border-b-clr_cusborder pb-[30px] mb-[30px] text-4xl font-semibold ">
                     <a href="{% url 'news-details' el.pk %}" class="text-white duration-500 group-hover:text-clr_base">{{ el.title}}</a>
                   </h3>
                   <p class="text-clr_pra text-base mb-[30px]">
@@ -54,7 +54,7 @@
                     {% endif %}
                   </p>
 
-                  <a href="{% url 'news-details' el.pk %}" class="max-w-[200px] flex justify-center items-center gap-2 font-medium px-[30px] pt-5 pb-[21px] text-lg leading-[120%] capitalize relative bg-clr_base overflow-hidden rounded-[5px] duration-500 text-clr_subtitle before:absolute before:content-[''] before:bottom-full before:bg-[#aad302] before:left-0 before:w-full before:h-full before:duration-500 before:bg-opacity-80 hover:before:bottom-0">
+                  <a href="{% url 'news-details' el.pk %}" class="max-w-[200px] flex justify-center items-center gap-2 font-medium px-[30px] pt-5 pb-[21px] text-lg leading-[120%]  relative bg-clr_base overflow-hidden rounded-[5px] duration-500 text-clr_subtitle before:absolute before:content-[''] before:bottom-full before:bg-[#aad302] before:left-0 before:w-full before:h-full before:duration-500 before:bg-opacity-80 hover:before:bottom-0">
                     <span class="z-10 relative duration-500">Подробнее</span>
                     <span>
                       <i class="bi-arrow-right z-10 relative duration-500"> </i>

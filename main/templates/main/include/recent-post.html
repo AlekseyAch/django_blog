@@ -6,8 +6,8 @@
                 <a href="{% url 'news-details' element.pk %}" class="flex items-center flex-wrap xl:flex-nowrap xl:gap-5 gap-[10px]">
                     <img src="{{ element.text_img.url }}" alt="img" width="120" />
                     <div>
-                        <span class="retitle text-white text-xl font-medium mb-[14px] block capitalize">{{ element.title }}</span>
-                        <span class="text-clr_base text-base flex items-center gap-2"><i><Clock /></i>{{ element.date }}</span>
+                        <span class="retitle text-white text-xl font-medium mb-[14px] block">{{ element.title|slice:":35" }} ...</span>
+                        <span class="text-clr_base text-base flex items-center"><i><Clock /></i>{{ element.date }}</span>
                     </div>
                 </a>
             </li>

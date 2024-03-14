@@ -176,3 +176,12 @@ code {
     margin-bottom: 30px;
     padding: 20px;
 }
+
+
+.two-line-title {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
