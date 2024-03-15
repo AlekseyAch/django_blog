@@ -8,6 +8,7 @@ class accardionServicesInline(admin.TabularInline):
 
 @admin.register(oneServices)
 class oneServicesAdmin(admin.ModelAdmin):
-	list_display = ["titleServices", "directionServices", "imgServices"]
+	list_display = ["titleServices", "directionServices", "imgServices", "sortNumber"]
 	inlines = [accardionServicesInline]
-	fields = [("titleServices", "directionServices"), ("imgServices","descriptionServices"), "textServices", ("videoServices", "imgVideoServices"), "titleQveschenServices"]
+	fields = [("titleServices", "directionServices", "sortNumber", "slug"), ("imgServices","descriptionServices"), "textServices", ("videoServices", "imgVideoServices"), "titleQveschenServices"]
+	prepopulated_fields = {'slug': ('titleServices',)}

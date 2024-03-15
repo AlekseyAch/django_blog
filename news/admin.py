@@ -8,7 +8,7 @@ from mptt.admin import MPTTModelAdmin
 
 admin.site.register(Category, MPTTModelAdmin)
 admin.site.register(Tag)
-class ResponseInline(admin.StackedInline):  # или admin.TabularInline для компактного отображения
+class ResponseInline(admin.StackedInline):
     model = Response
 
 @admin.register(reviews)

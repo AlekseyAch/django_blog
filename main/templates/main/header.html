@@ -55,14 +55,13 @@
                 <a href="{% url 'home' %}#projects" class="text-clr_white font-500 xxl:text-base text-sm uppercase lg:py-[10px] py-0 xxl:px-[16px] xl:px-[10px] px-1 hover:text-clr_base">Работы</a>
               </li>
               <li class="relative transition-all border-b-2 border-b-clr_cusborder lg:border-none last:border-none lg:py-0 py-4 group/dropdown dropdown">
-                <a href="{% url 'home' %}#services" class="text-clr_white font-500 xxl:text-base text-sm uppercase lg:py-[10px] py-0 xxl:px-[16px] xl:px-[10px] px-1 hover:text-clr_base">Услуги</a>
+                <a href="{% url 'servicesSite' %}" class="text-clr_white font-500 xxl:text-base text-sm uppercase lg:py-[10px] py-0 xxl:px-[16px] xl:px-[10px] px-1 hover:text-clr_base">Услуги</a>
                 <ul class="lg:absolute lg:block hidden static top-[50px] left-0 w-[250px] px-5 py-2 leading-9 z-50 transition-all lg:bg-white lg:shadow-mainShadow justify-center gap-[5px] before:absolute before:content-[''] before:-top-[17.6px] before:left-[26px] before:w-0 before:h-0 before:border-l-[13px] before:border-l-transparent before:border-r-[13px] before:border-r-transparent lg:before:border-b-[18px] lg:before:border-b-white lg:opacity-0 lg:invisible lg:translate-y-11 duration-500 group-hover/dropdown:opacity-100 group-hover/dropdown:visible group-hover/dropdown:translate-y-0 dropdownItem">
+                 {% for services in one_services %}
                   <li>
-                    <a href="" class="lg:text-clr_body text-white duration-500 hover:text-clr_base hover:pl-3 block">Все услуги</a>
+                    <a href="{% url 'servicesOne' slug=services.slug %}" class="lg:text-clr_body text-white duration-500 hover:text-clr_base hover:pl-3 block">{{ services.titleServices }}</a>
                   </li>
-                  <li>
-                    <a href="" class="lg:text-clr_body text-white duration-500 hover:text-clr_base hover:pl-3 block">Service Details</a>
-                  </li>
+                  {% endfor %}
                 </ul>
               </li>
               <li class="relative transition-all border-b-2 border-b-clr_cusborder lg:border-none last:border-none lg:py-0 py-4">

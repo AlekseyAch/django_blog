@@ -27,16 +27,3 @@ def about(request):
 
 def contacts(request):
 	return render(request, 'main/contacts.html')
-
-def footer(request):
-	contact_info = ContactInfo.objects.first()
-	footer_info = footerInfo.objects.first()
-	social_links = socialLinks.objects.all()
-	return render(
-		request, 'main/footer.html',
-		{
-			"contact_info": contact_info,
-			"social_links": social_links,
-			"footer_info": footer_info,
-		}
-	)

@@ -1,0 +1,136 @@
+{% load static %}
+{% include "main/header.html" %}
+
+    <!-- Page heading start -->
+    <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl  xl mx-auto px-3 pt_120 pb_120">
+      <div class="flex justify-center">
+        <div>
+          <div class="text-center">
+            <h1 class="lg:text-6xl sm:text-4xl text-3xl text-white lg:mb-10 sm:mb-9 mb-6 font-bold">
+              Направления моей работы
+            </h1>
+            <ul class="flex items-center justify-center sm:flex-nowrap flex-wrap gap-3">
+              <li class="text-2xl font-caveat">
+                <a href="/" class="text-white">Home</a>
+              </li>
+              <li class="text-white text-2xl">/</li>
+              <li class="text-clr_base font-caveat text-2xl">Направления моей работы</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page heading end -->
+
+    <!-- ----------- Services Start -->
+    <section id="services" class=" pb_120">
+      <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl  xl mx-auto px-3">
+        {% for services in one_services %}
+        <div>
+          <div class="lg:pb-10 pb-[30px] lg:pt-10 pt-[30px] flex justify-between items-center sm:gap-[14px] gap-5 sm:flex-nowrap flex-wrap border-b duration-500 border-b-[rgb(38_37_37)] first:border-t first:border-t-[rgb(38_37_37)] hover:border-b-clr_base hover:first:border-t-clr_base group" data-aos="fade-up" data-aos-duration="1000">
+            <div class="w-[1062px] flex items-center justify-between md:flex-nowrap flex-wrap md:gap-[14px] gap-2">
+              <div class="flex lg:gap-[60px] gap-[16px]">
+                <span class="text-xl text-white"> {{ services.sortNumber }} </span>
+                <div>
+                  <h5 class="text-base lg:text-xl font-semibold text-white mb-2">{{ services.directionServices }}</h5>
+                  <h2 class="text-[26px] xl:text-[40px] lg:text-3xl font-semibold lg:leading-[120%]">
+                    <a href="{% url 'servicesOne' slug=services.slug %}" class="text-white duration-500">{{ services.titleServices }}</a>
+                  </h2>
+                </div>
+              </div>
+              <p class="text-clr_pra text-base lg:w-[400px] w-[300px]">{{ services.descriptionServices }}</p>
+            </div>
+
+            <a href="" class="imgc h-[45px] w-[45px] sm:w-[60px] sm:h-[60px] rounded-md bg-[#1D1D1D] flex justify-center items-center duration-500 group-hover:bg-clr_base cursor-pointer">
+              <i class="bi-arrow-up-right duration-500 group-hover:text-clr_title text-lg sm:text-xl text-white"></i>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    <!-- ----------- Services End -->
+
+    <!-- ----------- Metting start -->
+    <section class="bg-common_bg bg-center bg-no-repeat bg-cover rounded-[10px] overflow-hidden pt_120 pb_120">
+      <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl xl mx-auto px-3">
+        <div class="grid lg:grid-cols-[58%_auto] gap-20 items-center">
+          <div>
+            <!-- ---------- Heading -->
+            <div class="pb-[50px]">
+              <span class="text-2xl font-caveat text-clr_base relative flex items-center sm:gap-6 gap-[14px] mx-auto mb-[30px]" data-aos="fade-down" data-aos-duration="1000">
+                <span class="sm:w-20 w-[50px] h-[1px] bg-clr_base"></span>
+                Хотите связаться со мной?
+              </span>
+              <h2 class="font-medium lg:text-6xl md:text-5xl sm:text-4xl text-[29px] text-white max-w-[620px]" data-aos="fade-down" data-aos-duration="1600">
+                Напишите мне на почту, либо позвоните по номеру телефона!
+              </h2>
+            </div>
+            <!-- ---------- Heading -->
+            <!-- ---------- Metting system -->
+            <div>
+              <div class="border-b border-b-[rgb(39,38,38)] hover:border-b-clr_base duration-500 transition-all"></div>
+              <div class="hover:border-b hover:border-b-clr_base flex ga-5 items-center md:gap-5 gap-4 duration-500 transition-all border-b border-b-[rgb(38_37_37)] lg:pb-[30px] pb-5 lg:pt-[30px] pt-[20px]" data-aos="fade-up" data-aos-duration="1000">
+                <span class="w-[60px] h-[60px] rounded-full bg-clr_base flex justify-center items-center">
+                  <i class="bi-envelope text-[26px] text-clr_title"></i>
+                </span>
+                <span class="">
+                  <span class="text-clr_pra md:text-lg text-base mb-1 block">Email
+                  </span>
+                  <a href="mailto:{{ contact_info.email_site }}" class="text-white md:text-xl text-base font-medium">{{ contact_info.email_site }}</a>
+                </span>
+              </div>
+              <div class="hover:border-b hover:border-b-clr_base flex ga-5 items-center md:gap-5 gap-4 duration-500 border-b border-b-[rgb(38_37_37)] lg:pb-[30px] pb-5 lg:pt-[30px] pt-[20px]" data-aos="fade-up" data-aos-duration="1500">
+                <span class="w-[60px] h-[60px] rounded-full bg-clr_base flex justify-center items-center">
+                  <i class="bi-geo-alt text-[26px] text-clr_title"></i>
+                </span>
+                <span class="">
+                  <span class="text-clr_pra md:text-lg text-base mb-1 block">Адрес проживания
+                  </span>
+                  <div class="text-white md:text-xl text-base font-medium">{{ contact_info.adress_local }}</div>
+                </span>
+              </div>
+            </div>
+            <!-- ---------- Metting system -->
+          </div>
+          <!-- --------- Right side / image -->
+          <div>
+            <div data-aos="zoom-in" data-aos-duration="2000">
+              <img src="{% static 'main/assets/img/project/project-need.png' %}" alt="img" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ----------- Metting End -->
+
+
+    <!-- ----------- Work Process start -->
+    <section class="bg-common_bg bg-center bg-no-repeat bg-cover rounded-[10px] overflow-hidden pt_120 pb_120">
+      <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl xl mx-auto px-3">
+        <!-- --------- Heading -->
+        <div class="text-center max-w-[920px] mx-auto md:mb-[60px] sm:mb-[50px] mb-[45px]">
+          <p class="text-2xl font-caveat text-clr_base relative flex justify-center items-center sm:gap-6 gap-[14px] mx-auto mb-[30px]" data-aos="fade-down" data-aos-duration="1000">
+            <span class="sm:w-20 w-[50px] h-[1px] bg-clr_base"></span>{{ work_steps.SubTitleWorkSteps }}<span class="sm:w-20 w-[50px] h-[1px] bg-clr_base"></span>
+          </p>
+          <h2 class="font-medium lg:text-6xl md:text-5xl sm:text-4xl text-[29px] text-white lg:leading-[120%] md:leading-tight leading-9" data-aos="fade-up" data-aos-duration="1200">{{ work_steps.TitleWorkSteps }}</h2>
+        </div>
+        <!-- --------- Heading -->
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7">
+        {% for itemsWorks in work_stepsOneSteps %}
+          <div data-aos="flip-up" data-aos-duration="500">
+            <div class="overflow-hidden duration-500 border border-clr_cusborder rounded-[10px] p-[30px] relative after:absolute after:w-[50px] after:h-[50px] after:bottom-0 after:right-0 after:content-[''] after:bg-[#121212] after:rounded-tl-[100px] after:rounded-tr-[20px] after:duration-500 hover:border-clr_base hover:after:bg-clr_base">
+              <h2 class="text-white lg:mb-6 mb-4 sm:text-[40px] text-3xl leading-[120%] font-semibold">{{ itemsWorks.TitleOneStep }}</h2>
+              <p class="lg:mb-[30px] mb-5 text-clr_pra text-lg">{{ itemsWorks.TextOneStep }}</p>
+              {{ itemsWorks.ListOneStep|safe }}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section>
+    <!-- ----------- Work Process End -->
+
+
+{% include "main/footer.html" %}

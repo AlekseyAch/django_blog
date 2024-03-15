@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('news/', include('news.urls')),
+    path('services/', include('services.urls')),
     path('', include('about.urls')),
     path("pages/", include("django.contrib.flatpages.urls")),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,86 @@
+{% load static %}
+{% include "main/header.html" %}
+    <!-- Page heading start -->
+    <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl  xl mx-auto px-3 pt_120 pb_120">
+      <div class="flex justify-center">
+        <div>
+          <div class="text-center">
+            <h1 class="lg:text-6xl sm:text-4xl text-3xl text-white lg:mb-10 sm:mb-9 mb-6 font-bold">{{ services_post.titleServices }}</h1>
+            <ul class="flex items-center justify-center sm:flex-nowrap flex-wrap gap-3">
+              <li class="text-2xl font-caveat">
+                <a href="/" class="text-white">Главная</a>
+              </li>
+              <li class="text-white text-2xl">/</li>
+              <li class="text-clr_base font-caveat text-2xl">{{ services_post.titleServices }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page heading end -->
+
+    <section class="pb_120">
+      <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl  xl mx-auto px-3">
+        <div class="grid lg:grid-cols-[66%_auto] gap-6">
+          <div>
+            <div class="w-full mb-[60px]">
+              <img src="{{ services_post.imgServices.url }}" alt="img" class="w-full"/>
+            </div>
+            <div class="xl:mb-[60px] mb-10" data-aos="fade-up" data-aos-duration="1400">
+              <h3 class="block xl:text-4xl text-2xl xl:mb-[30px] font-semibold mb-5 text-white">{{ services_post.titleServices }}</h3>
+              {{ services_post.textServices }}
+            </div>
+            <div class="relative w-full mb-[60px] before:absolute before:w-full before:h-full before:inset-0 before:content-[''] before:rounded-[10px] before:bg-[rgb(12_12_12)] before:bg-opacity-60">
+              <img src="{{ services_post.imgVideoServices.url }}" alt="img" class="rounded-[10px]"/>
+              <a href="{{ services_post.videoServices}}" class="video__80 video-btn cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 xl:w-20 xl:h-20 w-[60px] h-[60px] flex justify-center items-center rounded-full border border-clr_white before:absolute before:border-2 before:border-clr_white before:w-full before:h-full before:content:[''] before:rounded-full before:animate-scales"><i class="bi-play-fill text-clr_white text-[42px]"> </i></a>
+            </div>
+            <!-- Accordion -->
+            <div>
+              <h2 class="text-white mb-[3rem] lg:text-4xl text-3xl font-semibold leading-[120%]">{{ services_post.titleQveschenServices}}</h2>
+              <div>
+                {% for acc in accardion_services %}
+                <div class="relative rounded-lg bg-[rgb(23_23_23)] border-none mb-[22px] last:mb-0">
+                  <h2 class="accordion rounded-lg text-xl leading-[150%] cursor-pointer bg-[rgb(23_23_23)] font-normal text-white border-none flex items-center justify-between pt-5 px-6 pb-6 w-full">
+                    <span>{{ acc.titleAccardionServicesItem }}</span><i class="bi-arrow-down"> </i>
+                  </h2>
+                  <div class="relative hidden border-none pt-[10px] px-6 pb-[14px]">
+                    <p class="text-[#999999] text-lg font-normal leading-[30px] capitalize">
+                      {{ acc.textAccardionServicesItem }}
+                    </p>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <!-- ----------- Right side or sidebar -->
+          <div>
+            <div class="lg:mb-[30px] mb-5 xl:p-[30px] p-5 border border-clr_cusborder rounded-lg">
+              <h3 class="text-3xl text-white mb-[30px] font-semibold">Список услуг</h3>
+              {% for services in services_one %}
+              <a href="{% url 'servicesOne' slug=services.slug %}" class=" lg:mb-4 mb-[10px] lg:py-7 md:py-5 py-4 lg:pr-[26px] md:pr-4 pr-3 lg:pl-5 pl-3 rounded-[10px] border border-clr_cusborder flex items-center justify-between text-white lg:text-2xl md:xl text-base duration-500 hover:bg-clr_base hover:border-clr_base hover:text-clr_title group">
+                {{ services.titleServices }}
+                <i class="bi-chevron-right text-white text-[22px] duration-500 group-hover:text-clr_title">
+                </i>
+              </a>
+              {% endfor %}
+            </div>
+
+            <div class="lg:mb-[30px] mb-5 xl:p-[30px] p-5 border border-clr_cusborder rounded-lg">
+              <div class="relative w-full before:absolute before:w-full before:h-full before:inset-0 before:content-[''] before:rounded-[10px] before:bg-[rgb(12_12_12)] before:opacity-60">
+                <img src="./assets/img/contact/ser-detialcontact.png" alt="img" class="w-full"/>
+                <a href="" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex justify-center items-center gap-2 font-medium px-[30px] pt-5 pb-[21px] sm:text-lg text-base leading-[120%] capitalize bg-clr_base overflow-hidden rounded-[5px] duration-500 text-clr_subtitle before:absolute before:content-[''] before:bottom-full before:bg-[#aad302] before:left-0 before:w-full before:h-full before:duration-500 before:bg-opacity-80 hover:before:bottom-0">
+                  <span class="z-10 relative duration-500 whitespace-nowrap">Contact Me</span>
+                  <span class="z-10 relative duration-500"><i class="bi-arrow-right"> </i></span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- ----------- Right side or sidebar -->
+        </div>
+      </div>
+    </section>
+
+{% include "main/footer.html" %}
+
