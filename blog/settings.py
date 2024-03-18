@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'news',
     'about',
     'services',
+    'works',
 
     'mptt',
     'ckeditor',

@@ -110,6 +110,9 @@ class WorkStepsHomePage(models.Model):
 		verbose_name = 'Блок шагов'
 		verbose_name_plural = 'Шаги работы над проектом'
 
+
+
+
 class OneStepHomePage(models.Model):
 	OneStep = models.ForeignKey(
 		WorkStepsHomePage,
