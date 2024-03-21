@@ -1,0 +1,128 @@
+{% load static %}
+{% include "main/header.html" %}
+
+    <!-- Page heading start -->
+    <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl xl mx-auto px-3 pt_120 pb_120">
+      <div class="flex justify-center">
+        <div>
+          <div class="text-center">
+            <h1 class="lg:text-6xl sm:text-4xl text-3xl text-white lg:mb-10 sm:mb-9 mb-6 font-bold">{{ work.titleWorks }}</h1>
+            <ul class="flex items-center justify-center sm:flex-nowrap flex-wrap gap-3">
+              <li class="text-2xl font-caveat"><a href="/" class="text-white">Главная</a>
+              </li><li class="text-white text-2xl">/</li><li class="text-clr_base font-caveat text-2xl">{{ work.titleWorks }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page heading end -->
+
+    <!-- --------- details start -->
+    <section class=" pb_120">
+      <div
+        class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl xl mx-auto px-3">
+        <div class="lg:mb-[60px] mb-[50px] w-full relative" data-aos="fade-up" data-aos-duration="1000">
+          <img src="{{ work.imgWorks.url }}" alt="img" class="w-full"/>
+          <div class="bg-[rgb(18_18_18)] rounded-tr-[30px] xl:p-[45px] lg:p-6 py-5 px-[12px] lg:absolute static bottom-0 left-0 w-full lg:w-auto">
+            <h3 class="text-white xl:mb-8 mb-6 capitalize sm:text-[32px] text-[26px] leading-[120%] font-semibold">Информация о проекте</h3>
+            <div class="flex lg:gap-[100px] gap-5 xl:mb-9 mb-[22px]">
+              <div>
+                <div class=" xl:mb-[30px] mb-[14px]">
+                  <h5 class="font-medium text-white xl:mb-[10px] lg:mb-[5px] mb-[10px] capitalize text-xl leading-[130%]">Клиент</h5>
+                  <p class="text-clr_pra lg:text-base text-sm">{{ work.clientWorks }}</p>
+                </div>
+                <div class=" xl:mb-[30px] mb-[14px]">
+                  <h5 class="font-medium text-white xl:mb-[10px] lg:mb-[5px] mb-[10px] text-xl leading-[130%]">Даты проекта</h5>
+                  <p class="text-clr_pra lg:text-base text-sm">с {{ work.dateWorks }}</p>
+                  <p class="text-clr_pra lg:text-base text-sm">до {{ work.dateWorksTy }}</p>
+                </div>
+              </div>
+              <div>
+                <div class=" xl:mb-[30px] mb-[14px]">
+                  <h5 class="font-medium text-white xl:mb-[10px] lg:mb-[5px] mb-[10px] capitalize text-xl leading-[130%]">Категория</h5>
+                  <p class="text-clr_pra lg:text-base text-sm">Branding Design</p>
+                </div>
+                <div class=" xl:mb-[30px] mb-[14px]">
+                  <h5 class="font-medium text-white xl:mb-[10px] lg:mb-[5px] mb-[10px] capitalize text-xl leading-[130%]">Ссылка на проект</h5>
+                  <a href="{{ work.linkWorks }}" target="_blank" class="text-clr_pra lg:text-base text-sm">{{ work.titleWorks }}</a>
+                </div>
+              </div>
+            </div>
+            <ul class=" flex gap-4">
+              {% for social in social_links %}
+              <li>
+                <a href="{{ social.link  }}" class="w-[46px] h-[46px] bg-white rounded-full flex justify-center items-center hover:bg-clr_base duration-500"><i class="{{ social.ikons  }} text-clr_title"></i></a>
+              </li>
+              {% endfor %}
+
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="xl:mb-[60px] mb-10" data-aos="fade-up" data-aos-duration="1400">
+            <div class="xl:mb-7 mb-[15px] text-clr_pra">
+              {{ work.textWorks|striptags }}
+            </div>
+          </div>
+          <div class="xl:mb-[60px] mb-10" data-aos="fade-up" data-aos-duration="1600">
+            <h3 class="xl:text-[32px] xl:mb-[30px] mb-5 text-[26px] text-white capitalize font-semibold">Что было сделано?</h3>
+            <div class="xl:mb-7 mb-[15px] text-clr_pra">
+              {{ work.stepsWorks|striptags }}
+            </div>
+          </div>
+          <div class="xl:mb-[60px] mb-10" data-aos="fade-up" data-aos-duration="1800">
+            <h3 class="xl:text-[32px] xl:mb-[30px] mb-5 text-[26px] text-white capitalize font-semibold">Результат работы</h3>
+            <div class="text-clr_pra">
+              {{ work.resultWorks|striptags }}
+            </div>
+          </div>
+          <div class="flex items-center xl:gap-[30px] sm:gap-5 gap-[14px] flex-wrap sm:flex-nowrap" data-aos="fade-up" data-aos-duration="2000">
+            {% for imgFull in work_gallary %}
+              <a href="{{ imgFull.imgWorksGallery.url }}" class="imgc overflow-hidden lg:mb-[30px] mb-[20px] block w-full cursor-pointer">
+                <img src="{{ imgFull.imgWorksGallery.url }}" alt="img" class="w-full overflow-hidden duration-500 rounded-[10px] group-hover:scale-105"/>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------- details start -->
+
+    <!-- --------- Related Work start -->
+    <section class="bg-common_bg pt_120 pb_120">
+      <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl xl mx-auto px-3">
+        <!-- --------- Heading -->
+        <div class="text-center max-w-[920px] mx-auto md:mb-[60px] sm:mb-[50px] mb-[45px]">
+          <p class="text-2xl font-caveat text-clr_base relative flex justify-center items-center sm:gap-6 gap-[14px] mx-auto mb-[30px]" data-aos="fade-down" data-aos-duration="1000">
+            <span class="sm:w-20 w-[50px] h-[1px] bg-clr_base"></span>Проекты<span class="sm:w-20 w-[50px] h-[1px] bg-clr_base"></span>
+          </p>
+          <h2 class="font-medium lg:text-6xl md:text-5xl sm:text-4xl text-[29px] text-white lg:leading-[120%] md:leading-tight leading-9" data-aos="fade-up" data-aos-duration="1200">Похожие работы</h2>
+        </div>
+        <!-- --------- Heading -->
+
+        <!-- ---------- Card Group -->
+        <div class="md:columns-2 col-span-1 xxl:gap-[58px] lg:gap-12 md:gap-[30px]">
+          {% for item_works in works_list %}
+            <div data="all, {{ item_works.category.slug }}" class="project__item overflow-hidden group xl:mb-[60px] lg:mb-[50px] mb-[30px]" data-aos="fade-up" data-aos-duration="1000">
+              <a href="{{ item_works.imgWorks.url }}" class="imgc overflow-hidden lg:mb-[30px] mb-[20px] block w-full cursor-pointer">
+                <img src="{{ item_works.imgWorks.url }}" alt="img" class="w-full overflow-hidden duration-500 rounded-[10px] group-hover:scale-105"/>
+              </a>
+              <div class="content flex items-center justify-between gap-1">
+                <a href="{% url 'work_detail' slug=item_works.slug %}" class="left__cont">
+                  <span class="text-clr_base xl:mb-4 mb-2 block uppercase xl:text-lg text-base">{{ item_works.category }}</span>
+                  <h3 class="xl:text-[30px] sm:text-2xl text-xl font-semibold text-white">{{ item_works.titleWorks }}</h3>
+                </a>
+                <a href="{{ item_works.imgWorks.url }}" class="imgc h-[45px] w-[45px] sm:w-[60px] sm:h-[60px] rounded-md bg-[#1D1D1D] flex justify-center items-center duration-500 group-hover:bg-clr_base cursor-pointer">
+                  <i class="bi-arrow-up-right icon duration-500 group-hover:text-clr_title text-lg sm:text-xl text-white"></i>
+                </a>
+              </div>
+            </div>
+            {% endfor %}
+
+        </div>
+      </div>
+    </section>
+    <!-- --------- Related Work end -->
+
+{% include "main/footer.html" %}

@@ -1,0 +1,98 @@
+
+{% include "main/header.html" %}
+{% load static %}
+
+    <!-- Page heading start -->
+    <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl xl mx-auto px-3 pt_120 pb_120">
+      <div class="flex justify-center">
+        <div>
+          <div class="text-center">
+            <h1 class="lg:text-6xl sm:text-4xl text-3xl text-white lg:mb-10 sm:mb-9 mb-6 font-bold">
+              Мои проекты
+            </h1>
+            <ul class="flex items-center justify-center sm:flex-nowrap flex-wrap gap-3">
+              <li class="text-2xl font-caveat">
+                <a href="/" class="text-white">Главная</a>
+              </li>
+              <li class="text-white text-2xl">/</li>
+              <li class="text-clr_base font-caveat text-2xl">Проекты</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page heading end -->
+
+    <!-- -------- Protfolios start -->
+    <section class="pb_120">
+      <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl xl mx-auto px-3">
+        <div>
+          <!-- ------- Nav -->
+          <ul class="tablinks border border-clr_cusborder p-[10px] rounded-lg max-w-[683px] mx-auto md:mb-[60px] mb-10 flex items-center md:flex-nowrap flex-wrap md:justify-normal justify-center md:gap-0 gap-[5px]" data-aos="fade-down" data-aos-duration="2000">
+            <li class="nav-links md:border-t-0 md:border-b-0 md:border-l-0 border border-clr_cusborder md:border-r md:border-r-clr_cusborder md:last:border-r-0">
+              <button data="all" class="tablink border-none text-center md:inline-block block text-lg md:py-4 md:px-6 py-[11px] px-5 rounded-[5px] bg-clr_base text-clr_title">Все</button>
+            </li>
+            {% for nav_links_works in works_category %}
+            <li class="nav-links md:border-t-0 md:border-b-0 md:border-l-0 border border-clr_cusborder md:border-r md:border-r-clr_cusborder md:last:border-r-0">
+              <button data="{{ nav_links_works.slug }}" class="tablink border-none text-center md:inline-block block text-lg md:py-4 md:px-6 py-[11px] px-5 rounded-[5px] text-clr_pra">
+                {{ nav_links_works.WorksCategoryItem }}</button>
+            </li>
+            {% endfor %}
+          </ul>
+          <!-- ------- Nav -->
+
+          <!-- ---------- Card Group -->
+
+          <div class="  md:columns-2 col-span-1 xxl:gap-[58px] lg:gap-12 md:gap-[30px]">
+            <!-- card 1 -->
+            {% for item_works in works_list %}
+            <div data="{{ item_works.category.slug }}" class="project__item overflow-hidden group xl:mb-[60px] lg:mb-[50px] mb-[30px]" data-aos="fade-up" data-aos-duration="1000">
+              <a href="{{ item_works.imgWorks.url }}" class="imgc overflow-hidden lg:mb-[30px] mb-[20px] block w-full cursor-pointer">
+                <img src="{{ item_works.imgWorks.url }}" alt="img" class="w-full overflow-hidden duration-500 rounded-[10px] group-hover:scale-105"/>
+              </a>
+              <div class="content flex items-center justify-between gap-1">
+                <a href="{% url 'work_detail' slug=item_works.slug %}" class="left__cont">
+                  <span class="text-clr_base xl:mb-4 mb-2 block uppercase xl:text-lg text-base">{{ item_works.category }}</span>
+                  <h3 class="xl:text-[30px] sm:text-2xl text-xl font-semibold text-white">{{ item_works.titleWorks }}</h3>
+                </a>
+                <a href="{{ item_works.imgWorks.url }}" class="imgc h-[45px] w-[45px] sm:w-[60px] sm:h-[60px] rounded-md bg-[#1D1D1D] flex justify-center items-center duration-500 group-hover:bg-clr_base cursor-pointer">
+                  <i class="bi-arrow-up-right icon duration-500 group-hover:text-clr_title text-lg sm:text-xl text-white"></i>
+                </a>
+              </div>
+            </div>
+            {% endfor %}
+            <!-- card 1 -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- -------- Protfolios end -->
+
+    <!-- ----------- Work Process start -->
+    <section class="bg-common_bg bg-center bg-no-repeat bg-cover rounded-[10px] overflow-hidden pt_120 pb_120">
+      <div class="xl:max-w-[1350px] lg:max-w-[960px] md:max-w-2xl sm:max-w-xl xl mx-auto px-3">
+        <!-- --------- Heading -->
+        <div class="text-center max-w-[920px] mx-auto md:mb-[60px] sm:mb-[50px] mb-[45px]">
+          <p class="text-2xl font-caveat text-clr_base relative flex justify-center items-center sm:gap-6 gap-[14px] mx-auto mb-[30px]" data-aos="fade-down" data-aos-duration="1000">
+            <span class="sm:w-20 w-[50px] h-[1px] bg-clr_base"></span>{{ work_steps.SubTitleWorkSteps }}<span class="sm:w-20 w-[50px] h-[1px] bg-clr_base"></span>
+          </p>
+          <h2 class="font-medium lg:text-6xl md:text-5xl sm:text-4xl text-[29px] text-white lg:leading-[120%] md:leading-tight leading-9" data-aos="fade-up" data-aos-duration="1200">{{ work_steps.TitleWorkSteps }}</h2>
+        </div>
+        <!-- --------- Heading -->
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7">
+        {% for itemsWorks in work_stepsOneSteps %}
+          <div data-aos="flip-up" data-aos-duration="500">
+            <div class="overflow-hidden duration-500 border border-clr_cusborder rounded-[10px] p-[30px] relative after:absolute after:w-[50px] after:h-[50px] after:bottom-0 after:right-0 after:content-[''] after:bg-[#121212] after:rounded-tl-[100px] after:rounded-tr-[20px] after:duration-500 hover:border-clr_base hover:after:bg-clr_base">
+              <h2 class="text-white lg:mb-6 mb-4 sm:text-[40px] text-3xl leading-[120%] font-semibold">{{ itemsWorks.TitleOneStep }}</h2>
+              <p class="lg:mb-[30px] mb-5 text-clr_pra text-lg">{{ itemsWorks.TextOneStep }}</p>
+              {{ itemsWorks.ListOneStep|safe }}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section>
+    <!-- ----------- Work Process End -->
+
+{% include "main/footer.html" %}
