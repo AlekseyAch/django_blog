@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from news.models import reviews, News
-from about.models import hiroBlock, ContactInfo, socialLinks, galleryHomePage, ourAwards, WorkStepsHomePage, OneStepHomePage, footerInfo
+from about.models import hiroBlock, ContactInfo, socialLinks, galleryHomePage, ourAwards, WorkStepsHomePage, OneStepHomePage
 from services.models import oneServices
 from works.models import works
 
@@ -15,7 +15,6 @@ def index(request):
     work_stepsOneSteps = OneStepHomePage.objects.all()
     work_steps = WorkStepsHomePage.objects.last()
     all_news = News.objects.order_by('-date')[:6]
-
     works_list = works.objects.all()
     return render(
 	    request,
@@ -37,17 +36,5 @@ def index(request):
 def header(request):
     return render(request, 'main/header.html')
 
-def footer(request):
-    footer_info = footerInfo.objects.all()
-    return render(request, 'main/footer.html',
-                  {
-                      "footer_info": footer_info
-                  }
-                  )
-
-def about(request):
-	return render(request, 'main/about.html')
 
 
-def contacts(request):
-	return render(request, 'main/contacts.html')

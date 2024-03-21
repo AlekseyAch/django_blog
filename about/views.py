@@ -1,6 +1,6 @@
 from django.views import View
 from django.views.generic import CreateView
-from .models import ContactInfo, hiroBlock
+from .models import ContactInfo, hiroBlock, footerInfo
 from .forms import ContactsForms
 from django.shortcuts import render
 
@@ -20,7 +20,3 @@ class CreateContact(CreateView):
 		return ['main/contact.html']
 
 
-class HomePage(View):
-	def get(self, request):
-		hiro_block = hiroBlock.objects.last()
-		return render(request, 'main/home.html', {"hiro_block": hiro_block})

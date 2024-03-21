@@ -28,7 +28,7 @@ class News(models.Model):
         verbose_name='Категория',
         on_delete=models.SET_NULL,
         null=True,
-        default=1)
+        blank=True)
     text_blocks = RichTextField(
         'Текстовые блоки',
         blank=True,
