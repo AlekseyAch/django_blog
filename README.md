@@ -6,7 +6,7 @@
 
 1. Клонируйте репозиторий:
 
-git clone https://github.com/AlekseyAch/my-dajgoSite.git
+git clone https://github.com/AlekseyAch/django_blog.git
 
 2. Перейдите в директорию проекта:
 cd my-dajgoSite

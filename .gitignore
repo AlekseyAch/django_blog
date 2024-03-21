@@ -16,9 +16,6 @@ __pycache__/
 .pyc
 *.pyc
 
-!*media/.gitkeep
-media/*
-
 log/debug.log
 
 build
